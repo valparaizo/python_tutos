@@ -1,2 +1,2 @@
 Some python tests here
-(myown tests)
+(my own tests)
