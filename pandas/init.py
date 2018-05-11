@@ -2,22 +2,22 @@
 import numpy as np
 import os
 import pandas as pd
+import matplotlib.pyplot as plt
 
 #housing = load_housing_data()
 housing = pd.read_csv("datasets/housing/housing.csv")
 
-print("Head")
+print("## First lines")
 print(housing.head())
 
-print("Infos")
+print("\n## Metadata")
 housing.info()
 
-print("ocean_proximity")
-housing["ocean_proximity"].value_counts()
+print("\n## Freq. Distrib for ocean_proximity")
 print(housing["ocean_proximity"].value_counts())
 
+print("\n## Stats")
 print(housing.describe())
 
-import matplotlib.pyplot as plt
 housing.hist(bins=50, figsize=(20,15))
 plt.show()
