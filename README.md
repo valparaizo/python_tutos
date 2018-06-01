@@ -1,2 +1,1 @@
-Some python tests here
-(my own tests)
+You'll find here the Jupyter notebooks and Python codes for the howtos i published on datacorner.fr
