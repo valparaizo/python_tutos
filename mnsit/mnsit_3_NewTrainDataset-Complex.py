@@ -1,4 +1,3 @@
-
 import pandas as pd
 import numpy as np
 import matplotlib
@@ -96,22 +95,19 @@ def shift4LineImages(_imageMatrix, _label):
     # returns the 4 new images
     return pd.concat([row1, row2, row3, row4], ignore_index=True)
 
+print ("Copy originals: " + str(datetime.datetime.now()))
+TRAIN.to_csv("./data/trainextendedcomplex.csv", index=False, mode='w', header=True)
+
 datebefore = dateinit = datetime.datetime.now()
 print ("Start: " + str(datebefore))
-
-X_NEWTRAIN = pd.DataFrame()
 Rangeloop = range(X_TRAIN.shape[0])
 for rowIdx in Rangeloop:
-    if (rowIdx % 100 == 0):
+    if (rowIdx % 50 == 0):
         elapsed = datetime.datetime.now() - datebefore
-        print ("Elapsed: " + str(elapsed.total_seconds()) + " sec. | Index: " + str(rowIdx) + " | Shape: " + str(X_NEWTRAIN.shape))
-    X_NEWTRAIN = pd.concat([X_NEWTRAIN, shift4LineImages(getImageMatriceDigit(TRAIN, rowIdx, 1), y[rowIdx])], ignore_index=True)
-
+        print ("Elapsed: " + str(elapsed.total_seconds()) + " sec. | Index: " + str(rowIdx))
+    newImages = shift4LineImages(getImageMatriceDigit(TRAIN, rowIdx, 1), y[rowIdx])
+    head = True
+    newImages.to_csv("./data/trainextendedcomplex.csv", index=False, mode='a', header=False)
+    
 elapsedTotal = datetime.datetime.now() - dateinit
-print ("Total Elapsed: " + str(elapsedTotal.total_seconds()) + " sec. | Global Shape: " + str(X_NEWTRAIN.shape))
-
-X_NEWTRAIN = pd.concat([X_NEWTRAIN, TRAIN], ignore_index=True)
-print ("Start Export: " + str(datetime.datetime.now()))
-
-X_NEWTRAIN.to_csv("./data/trainextendedcomplex.csv", index=False)
-print ("Exported: " + str(datetime.datetime.now()))
+print ("Total Elapsed: " + str(elapsedTotal.total_seconds()))
