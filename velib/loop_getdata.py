@@ -1,7 +1,7 @@
 from threading import Timer
 import requests
 import pandas as pd
-from time import gmtime, strftime
+from time import localtime, strftime
 
 def update():
     getData()
@@ -11,6 +11,7 @@ def set_timer():
     Timer(durationinsec, update).start()
  
 def main():
+    getData()
     set_timer()
 
 # Cf infos sur https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/information/
@@ -19,8 +20,8 @@ def getData():
     #https://data.opendatasoft.com/explore/dataset/velib-disponibilite-en-temps-reel%40parisdata/api/
     nbrows = 1500
     url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel%40parisdata&rows=" + str(nbrows) + "&facet=overflowactivation&facet=creditcard&facet=kioskstate&facet=station_state"
-    mytime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-    
+    mytime = strftime("%Y-%m-%d %H:%M:%S", localtime())
+
     resp = requests.get(url)
     if resp.status_code != 200:
         print(iteration, " - Erreur dans la récupération des données")
@@ -42,15 +43,16 @@ def getData():
                                  rec['fields']['nbbikeoverflow'],
                                  rec['fields']['nbbike'],
                                  rec['fields']['nbebike'],
-                                rec['fields']['geo']]
-        with open("vélib_batch.csv", 'a') as f:
-            dff.to_csv(f, header=True, index=False)
-        print(iteration, " - Fin de la récupération, Nb de lignes récupérées: ", data['nhits'])
+                                 rec['fields']['geo']]
+        if int(data['nhits']) > 0:
+            with open("vélib_batch_parheure.csv", 'a') as f:
+                dff.to_csv(f, header=True, index=False)
+        print(mytime, " - ", iteration, " - Fin de la récupération, Nb de lignes récupérées: ", data['nhits'])
     
     iteration = iteration + 1
     
 #----------------------------------------
     
-durationinsec = 600
+durationinsec = 1  * 60 * 60
 iteration = 1    
 main()
