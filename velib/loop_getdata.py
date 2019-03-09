@@ -11,8 +11,7 @@ def set_timer():
     Timer(durationinsec, update).start()
  
 def main():
-    getData()
-    set_timer()
+    update()
 
 # Cf infos sur https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/information/
 def getData():
@@ -47,12 +46,11 @@ def getData():
         if int(data['nhits']) > 0:
             with open("vélib_batch_parheure.csv", 'a') as f:
                 dff.to_csv(f, header=True, index=False)
-        print(mytime, " - ", iteration, " - Fin de la récupération, Nb de lignes récupérées: ", data['nhits'])
-    
+            print(mytime, " - ", iteration, " - Fin de la récupération, Nb de lignes récupérées: ", data['nhits'])
     iteration = iteration + 1
     
 #----------------------------------------
     
-durationinsec = 1  * 60 * 60
+durationinsec = 1*60*60
 iteration = 1    
 main()
