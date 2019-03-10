@@ -47,6 +47,8 @@ def getData():
             with open("vélib_batch_parheure.csv", 'a') as f:
                 dff.to_csv(f, header=True, index=False)
             print(mytime, " - ", iteration, " - Fin de la récupération, Nb de lignes récupérées: ", data['nhits'])
+        else:
+            print(mytime, " - ", iteration, " - Pas de données à récupérer.")
     iteration = iteration + 1
     
 #----------------------------------------
