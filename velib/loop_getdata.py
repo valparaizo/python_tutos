@@ -23,7 +23,7 @@ def getData():
 
     resp = requests.get(url)
     if resp.status_code != 200:
-        print(iteration, " - Erreur dans la récupération des données")
+        print(mytime, " - ", iteration, " - Erreur dans la récupération des données")
     else:
         data = resp.json()
         dff = pd.DataFrame(columns =['Timer', 'ID', 'Station', 'Code Station', 'Type de stations', 'Etat de la station',
