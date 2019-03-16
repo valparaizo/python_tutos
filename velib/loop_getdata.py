@@ -28,7 +28,7 @@ def getData():
         data = resp.json()
         dff = pd.DataFrame(columns =['Timer', 'ID', 'Station', 'Code Station', 'Type de stations', 'Etat de la station',
                                      'Nb bornes disponibles', 'Nombres de bornes en station', 'Nombre vélo en PARK+',
-                                     'Dispo vélo mécanique', 'Dispo vélo électrique',
+                                     'Nb vélo mécanique', 'Nb vélo électrique',
                                      'geo'])
         for rec in data['records']:
             dff.loc[len(dff)] = [mytime, 
