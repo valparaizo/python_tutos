@@ -6,7 +6,7 @@ from joblib import dump, load
 app = Flask(__name__)
 
 def fitgen():
-    data = pd.read_csv("./data/univariate_linear_regression_dataset.csv")
+    data = pd.read_csv("../datasources/univariate_linear_regression_dataset.csv")
     X = data.col2.values.reshape(-1, 1)
     y = data.col1.values.reshape(-1, 1)
     regr = linear_model.LinearRegression()
