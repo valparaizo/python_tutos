@@ -13,8 +13,8 @@ pd.options.display.max_columns = None
 #pd.set_printoptions(max_columns=500)
 
 print (str(datetime.datetime.now()) + " - Import des jeux de données")
-TRAIN = pd.read_csv("./data/train.csv", delimiter=',') #, skiprows=1)
-TEST = pd.read_csv("./data/test.csv", delimiter=',') #, skiprows=1)
+TRAIN = pd.read_csv("../datasources/mnsit/train.csv", delimiter=',') #, skiprows=1)
+TEST = pd.read_csv("../datasources/mnsit/test.csv", delimiter=',') #, skiprows=1)
 X_TRAIN = TRAIN.copy()
 X_TEST = TEST.copy()
 y = TRAIN.label

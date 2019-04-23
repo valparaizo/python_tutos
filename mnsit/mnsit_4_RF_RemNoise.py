@@ -38,8 +38,8 @@ def exportKaggle(algo):
     result.to_csv(fichier, columns=["ImageId", "Label"], index=False)
 
 print (str(datetime.datetime.now()) + " > Read data ...")
-X_NEWTRAIN = pd.read_csv("./data/trainextended.csv", delimiter=',') #, skiprows=1)
-TEST = pd.read_csv("./data/test.csv", delimiter=',') #, skiprows=1)
+X_NEWTRAIN = pd.read_csv("../datasources/mnsit/trainextended.csv", delimiter=',') #, skiprows=1)
+TEST = pd.read_csv("../datasources/mnsit/test.csv", delimiter=',') #, skiprows=1)
 X_TEST = TEST.copy()
 y = X_NEWTRAIN.label
 del X_NEWTRAIN["label"]
