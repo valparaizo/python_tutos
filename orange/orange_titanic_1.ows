@@ -15,11 +15,11 @@
 		<node id="11" name="Scatter Plot" position="(706.0, 566.0)" project_name="Orange3" qualified_name="Orange.widgets.visualize.owscatterplot.OWScatterPlot" title="Scatter Plot (2)" version="" />
 		<node id="12" name="Test &amp; Score" position="(968.0, 532.0)" project_name="Orange3" qualified_name="Orange.widgets.evaluate.owtestlearners.OWTestLearners" title="Test &amp; Score" version="" />
 		<node id="13" name="Save Model" position="(1025.0, 263.0)" project_name="Orange3" qualified_name="Orange.widgets.model.owsavemodel.OWSaveModel" title="Save Model" version="" />
-		<node id="14" name="File" position="(143.0, 790.0)" project_name="Orange3" qualified_name="Orange.widgets.data.owfile.OWFile" title="File (1)" version="" />
-		<node id="15" name="Load Model" position="(144.0, 633.0)" project_name="Orange3" qualified_name="Orange.widgets.model.owloadmodel.OWLoadModel" title="Load Model" version="" />
-		<node id="16" name="Predictions" position="(273.0, 709.0)" project_name="Orange3" qualified_name="Orange.widgets.evaluate.owpredictions.OWPredictions" title="Predictions" version="" />
+		<node id="14" name="File" position="(93.0, 681.0)" project_name="Orange3" qualified_name="Orange.widgets.data.owfile.OWFile" title="File (1)" version="" />
+		<node id="15" name="Load Model" position="(94.0, 524.0)" project_name="Orange3" qualified_name="Orange.widgets.model.owloadmodel.OWLoadModel" title="Load Model" version="" />
+		<node id="16" name="Predictions" position="(223.0, 600.0)" project_name="Orange3" qualified_name="Orange.widgets.evaluate.owpredictions.OWPredictions" title="Predictions" version="" />
 		<node id="17" name="Data Table" position="(1172.0, 337.0)" project_name="Orange3" qualified_name="Orange.widgets.data.owtable.OWDataTable" title="Data Table (2)" version="" />
-		<node id="18" name="Data Table" position="(401.0, 762.0)" project_name="Orange3" qualified_name="Orange.widgets.data.owtable.OWDataTable" title="Data Table (3)" version="" />
+		<node id="18" name="Data Table" position="(351.0, 653.0)" project_name="Orange3" qualified_name="Orange.widgets.data.owtable.OWDataTable" title="Data Table (3)" version="" />
 	</nodes>
 	<links>
 		<link enabled="true" id="0" sink_channel="Data" sink_node_id="1" source_channel="Data" source_node_id="0" />
@@ -43,8 +43,8 @@
 		<link enabled="true" id="18" sink_channel="Data" sink_node_id="7" source_channel="Data" source_node_id="1" />
 	</links>
 	<annotations>
-		<arrow end="(357.00000000000006, 589.0)" fill="#C1272D" id="0" start="(287.00000000000006, 672.0)" />
-		<text font-family="Helvetica" font-size="16" id="1" rect="(320.0, 538.0, 121.0, 50.0)" type="text/plain">Prédiction sur le jeu de test</text>
+		<arrow end="(307.0000000000001, 480.0)" fill="#C1272D" id="0" start="(237.0000000000001, 563.0)" />
+		<text font-family="Helvetica" font-size="16" id="1" rect="(270.0, 429.0, 121.0, 50.0)" type="text/plain">Prédiction sur le jeu de test</text>
 	</annotations>
 	<thumbnail />
 	<node_properties>
