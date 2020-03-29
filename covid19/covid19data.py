@@ -126,5 +126,6 @@ print ("Récupération des données du ministère de la santé")
 data = RecupereDonneesMinistereSante(data.copy())
 print ("Comble les jours manquants")
 data = Bouchetrous(data.copy())
+
 data.to_csv("covid19.csv", index=False)
 
