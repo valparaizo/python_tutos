@@ -126,5 +126,18 @@ data = RecupereDonneesMinistereSante(data)
 print ("Comble les jours manquants")
 data = Bouchetrous(data)
 
+# quelques calculs
+data['FR Nvx cas confirmés'] = 0
+data['FR Nvx Décès'] = 0
+data['FR Nvx Guéris'] = 0
+data['FR Nvx Hospitalisés'] = 0
+
+for index, row in data.iterrows():
+    if index > 0:
+        data.loc[index, 'FR Nvx cas confirmés'] = data['FR Tot Cas Confirmés'][index] - data['FR Tot Cas Confirmés'][index-1] if (data['FR Tot Cas Confirmés'][index] - data['FR Tot Cas Confirmés'][index-1])>0 else 0
+        data.loc[index, 'FR Nvx Décès'] = data['FR Tot Décès'][index] - data['FR Tot Décès'][index-1] if (data['FR Tot Décès'][index] - data['FR Tot Décès'][index-1])>0 else 0
+        data.loc[index, 'FR Nvx Guéris'] = data['FR Tot Guéris'][index] - data['FR Tot Guéris'][index-1] if (data['FR Tot Guéris'][index] - data['FR Tot Guéris'][index-1] )>0 else 0
+        data.loc[index, 'FR Nvx Hospitalisés'] = data['FR Tot Hospitalisés'][index] - data['FR Tot Hospitalisés'][index-1] if (data['FR Tot Hospitalisés'][index] - data['FR Tot Hospitalisés'][index-1] )>0 else 0
+
 print ("Ecriture dans un fichier csv")
 data.to_csv("covid19.csv", index=False)
