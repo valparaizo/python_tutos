@@ -78,7 +78,7 @@ def RecupereDonneesSantePubliqueFrance():
         i=i+1
     print ('--> Fin du process')
     return yamls
-    
+
 # RECUPERATION DONNEES SANTE PUBLIQUE FRANCE
 def RecupereDonneesMinistereSante(yamls):
     i=1
@@ -96,15 +96,14 @@ def RecupereDonneesMinistereSante(yamls):
             if (yamls[cols[5]][i-1] == "no-data"):
                 print ("(*) Modifie les données manquantes pour la date du ", myDate.strftime("%Y-%m-%d"))
                 # Modifie toute la ligne
-                yamls[cols[1]][i-1] = recupDataWithException2(yamlout, 'donneesNationales', 'casConfirmes')
-                yamls[cols[2]][i-1] = recupDataWithException2(yamlout, 'donneesNationales', 'deces')
-                yamls[cols[3]][i-1] = recupDataWithException2(yamlout, 'donneesMondiales', 'casConfirmes')
-                yamls[cols[4]][i-1] = recupDataWithException2(yamlout, 'donneesMondiales', 'deces')
-                yamls[cols[5]][i-1] = "ministere-sante"
-
+                yamls.loc[i-1, cols[1]] = recupDataWithException2(yamlout, 'donneesNationales', 'casConfirmes')
+                yamls.loc[i-1, cols[2]]  = recupDataWithException2(yamlout, 'donneesNationales', 'deces')
+                yamls.loc[i-1, cols[3]]  = recupDataWithException2(yamlout, 'donneesMondiales', 'casConfirmes')
+                yamls.loc[i-1, cols[4]]  = recupDataWithException2(yamlout, 'donneesMondiales', 'deces')
+                yamls.loc[i-1, cols[5]]  = "ministere-sante"
             # Ajoute les nouveaux champs
-            yamls[cols[6]][i-1] = recupDataWithException2(yamlout, 'donneesNationales', 'hospitalises')
-            yamls[cols[7]][i-1] = recupDataWithException2(yamlout, 'donneesNationales', 'gueris')
+            yamls.loc[i-1, cols[6]] = recupDataWithException2(yamlout, 'donneesNationales', 'hospitalises')
+            yamls.loc[i-1, cols[7]] = recupDataWithException2(yamlout, 'donneesNationales', 'gueris')
         i=i+1
     print ('--> Fin du process')
     return yamls
@@ -115,7 +114,7 @@ def Bouchetrous(yamls):
     for index, row in yamls.iterrows():
         if (yamls[cols[5]][i-1] == "no-data"):
             for j in [1, 2, 3, 4, 6, 7]:
-                yamls[cols[j]][i-1] = yamls[cols[j]][i-2]
+                yamls.loc[i-1, cols[j]] = yamls[cols[j]][i-2] 
         i += 1
     return yamls
 
@@ -123,9 +122,9 @@ def Bouchetrous(yamls):
 print ("Récupération des données de Santé Publique France")
 data = RecupereDonneesSantePubliqueFrance()
 print ("Récupération des données du ministère de la santé")
-data = RecupereDonneesMinistereSante(data.copy())
+data = RecupereDonneesMinistereSante(data)
 print ("Comble les jours manquants")
-data = Bouchetrous(data.copy())
+data = Bouchetrous(data)
 
+print ("Ecriture dans un fichier csv")
 data.to_csv("covid19.csv", index=False)
-
