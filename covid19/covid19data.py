@@ -132,6 +132,7 @@ data['FR Nvx Décès'] = 0
 data['FR Nvx Guéris'] = 0
 data['FR Nvx Hospitalisés'] = 0
 
+# Calcule les différence vs cumuls
 for index, row in data.iterrows():
     if index > 0:
         data.loc[index, 'FR Nvx cas confirmés'] = data['FR Tot Cas Confirmés'][index] - data['FR Tot Cas Confirmés'][index-1] if (data['FR Tot Cas Confirmés'][index] - data['FR Tot Cas Confirmés'][index-1])>0 else 0
@@ -139,5 +140,9 @@ for index, row in data.iterrows():
         data.loc[index, 'FR Nvx Guéris'] = data['FR Tot Guéris'][index] - data['FR Tot Guéris'][index-1] if (data['FR Tot Guéris'][index] - data['FR Tot Guéris'][index-1] )>0 else 0
         data.loc[index, 'FR Nvx Hospitalisés'] = data['FR Tot Hospitalisés'][index] - data['FR Tot Hospitalisés'][index-1] if (data['FR Tot Hospitalisés'][index] - data['FR Tot Hospitalisés'][index-1] )>0 else 0
 
+# Retire la dernière ligne (aujourd'hui) si pas de données récupérées
+if (data.loc[len(data)-1,'Source'] == 'no-data'):
+    data = data.drop([len(data)-1])
+        
 print ("Ecriture dans un fichier csv")
 data.to_csv("covid19.csv", index=False)
