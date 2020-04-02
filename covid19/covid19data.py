@@ -145,4 +145,4 @@ if (data.loc[len(data)-1,'Source'] == 'no-data'):
     data = data.drop([len(data)-1])
         
 print ("Ecriture dans un fichier csv")
-data.to_csv("covid19.csv", index=False)
+data.to_csv("covid19_" + sAujourdhui + ".csv", index=False)
